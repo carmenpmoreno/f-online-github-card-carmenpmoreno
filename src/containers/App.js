@@ -11,12 +11,59 @@ class App extends React.Component {
       adalabUsersdata: {},
       fetchAdalabUsersOk: false,
       inputValue: '',
+      adalabUserdata: {},
     };
     this.getAdalabUsers = this.getAdalabUsers.bind(this);
+    this.handleOptions = this.handleOptions.bind(this);
   }
 
   componentDidMount() {
     this.getAdalabUsers();
+  }
+
+  handleOptions(event) {
+    // const adalabUser = event.currentTarget.value;
+    // const AdalabUserUrl = `https://api.github.com/users/${adalabUser}`;
+    // fetch(AdalabUserUrl)
+    //   .then(response => response.json())
+    //   .then(AdalabUserInfo => {
+    //     this.setState({
+    //       adalabUserdata: AdalabUserInfo,
+    //     });
+    //   });
+    const mockAdalabUser= {
+      "login": "AilatanGH",
+      "id": 26969648,
+      "node_id": "MDQ6VXNlcjI2OTY5NjQ4",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/26969648?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AilatanGH",
+      "html_url": "https://github.com/AilatanGH",
+      "followers_url": "https://api.github.com/users/AilatanGH/followers",
+      "following_url": "https://api.github.com/users/AilatanGH/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AilatanGH/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AilatanGH/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AilatanGH/subscriptions",
+      "organizations_url": "https://api.github.com/users/AilatanGH/orgs",
+      "repos_url": "https://api.github.com/users/AilatanGH/repos",
+      "events_url": "https://api.github.com/users/AilatanGH/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AilatanGH/received_events",
+      "type": "User",
+      "site_admin": false,
+      "name": "Natalia Guaita",
+      "company": null,
+      "blog": "",
+      "location": "Madrid",
+      "email": null,
+      "hireable": null,
+      "bio": "\r\nCurrent adalaber | Graphic Designer | Front-end Junior",
+      "public_repos": 12,
+      "public_gists": 0,
+      "followers": 10,
+      "following": 1,
+      "created_at": "2017-04-06T14:26:35Z",
+      "updated_at": "2019-05-06T09:00:14Z"
+    }
   }
 
   getAdalabUsers() {
@@ -38,19 +85,28 @@ class App extends React.Component {
   render() {
     // const adalabUsers = this.state.adalabUsersdata.adalabUsers;
     const adalabUsers = this.state.adalabUsersdata.mockAdalabUsers;
-    console.log(adalabUsers);
     return (
       <div className="App" >
         <h1>GitHub finder of people on Adalab</h1>
         <label htmlFor="users" className="users-finder__label">Selecciona una usuaria</label>
-        <select id="users" className="users-finder__select" name="users">
-          <option className="users-finder__option">Selecciona una usuaria</option>
+        <select
+          id="users"
+          className="users-finder__select"
+          name="users"
+          onChange={this.handleOptions}
+        >
+          <option className="users-finder__label-option">Selecciona una usuaria</option>
           {this.state.fetchAdalabUsersOk === true
-            ? (adalabUsers.map(adalabUser => 
-            <option className="users-finder__option" 
-            key={adalabUser.id}>{adalabUser.login}</option>
-            ))
-            : (<option>Loading ...</option>)
+            ?
+            adalabUsers.map(adalabUser =>
+              <option
+                className="users-finder__option"
+                key={adalabUser.id}
+                value={adalabUser.login}
+              >{adalabUser.login}
+              </option>
+            )
+            : <option>Loading ...</option>
           }
         </select>
       </div>
