@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 // import fetchAdalabUsers from '../services/getAdalabUsers';
 import mockAdalabUsers from '../services/getAdalabUsers';
+import UserCard from '../components/UserCard';
 
 class App extends React.Component {
 
@@ -76,7 +77,7 @@ class App extends React.Component {
     // fetchAdalabUsers()
     // .then(adalabUsers => {
     //   this.setState({
-    //     adalabUsersdata: { adalabUsers },
+    //     adalabUsersdata: adalabUsers,
     //     fetchAdalabUsersOk: true,
     //   });
     // });
@@ -89,7 +90,6 @@ class App extends React.Component {
 
   render() {
     const { adalabUsersdata, fetchAdalabUsersOk, adalabUserdata, fetchAdalabUserOk } = this.state;
-    console.log(adalabUserdata);
     return (
       <div className="App" >
         <h1>GitHub finder of people on Adalab</h1>
@@ -115,29 +115,9 @@ class App extends React.Component {
           }
         </select>
         {fetchAdalabUserOk === true
-          ?
-          <div className="user-card">
-            <ul className="user-card__list-up">
-              <li className="user-card__item-up">@{adalabUserdata.login}</li>
-              <li className="user-card__item-up">{adalabUserdata.name}</li>
-              <li className="user-card__item-up">{adalabUserdata.location}</li>
-            </ul>
-            <ul className="user-card__list-down">
-              <div className="user-card__items-wrapper">
-                <li className="user-card__item-down">{adalabUserdata.public_repos}</li>
-                <li className="user-card__item-down">Repos</li>
-              </div>
-              <div className="user-card__items-wrapper">
-                <li className="user-card__item-down">{adalabUserdata.followers}</li>
-                <li className="user-card__item-down">Followers</li>
-              </div>
-              <div className="user-card__items-wrapper">
-                <li className="user-card__item-down">{adalabUserdata.following}</li>
-                <li className="user-card__item-down">Following</li>
-              </div>
-            </ul>
-          </div>
-
+          ? <UserCard
+            adalabUserdata={adalabUserdata}
+          />
           : (<p>logo futuro de gitbub</p>)
         }
       </div>
