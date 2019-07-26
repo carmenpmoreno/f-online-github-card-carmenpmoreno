@@ -8,10 +8,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      adalabUsersdata: {},
+      adalabUsersdata: [],
       fetchAdalabUsersOk: false,
-      inputValue: '',
       adalabUserdata: {},
+      fetchAdalabUserOk: false
     };
     this.getAdalabUsers = this.getAdalabUsers.bind(this);
     this.handleOptions = this.handleOptions.bind(this);
@@ -29,9 +29,10 @@ class App extends React.Component {
     //   .then(AdalabUserInfo => {
     //     this.setState({
     //       adalabUserdata: AdalabUserInfo,
+    // fetchAdalabUserOk: true
     //     });
     //   });
-    const mockAdalabUser= {
+    const mockAdalabUser = {
       "login": "AilatanGH",
       "id": 26969648,
       "node_id": "MDQ6VXNlcjI2OTY5NjQ4",
@@ -64,6 +65,10 @@ class App extends React.Component {
       "created_at": "2017-04-06T14:26:35Z",
       "updated_at": "2019-05-06T09:00:14Z"
     }
+    this.setState({
+      adalabUserdata: mockAdalabUser,
+      fetchAdalabUserOk: true
+    });
   }
 
   getAdalabUsers() {
@@ -77,14 +82,14 @@ class App extends React.Component {
     // });
 
     this.setState({
-      adalabUsersdata: { mockAdalabUsers },
+      adalabUsersdata: mockAdalabUsers,
       fetchAdalabUsersOk: true,
     });
   }
 
   render() {
-    // const adalabUsers = this.state.adalabUsersdata.adalabUsers;
-    const adalabUsers = this.state.adalabUsersdata.mockAdalabUsers;
+    const { adalabUsersdata, fetchAdalabUsersOk, adalabUserdata, fetchAdalabUserOk } = this.state;
+    console.log(adalabUserdata);
     return (
       <div className="App" >
         <h1>GitHub finder of people on Adalab</h1>
@@ -96,9 +101,9 @@ class App extends React.Component {
           onChange={this.handleOptions}
         >
           <option className="users-finder__label-option">Selecciona una usuaria</option>
-          {this.state.fetchAdalabUsersOk === true
+          {fetchAdalabUsersOk === true
             ?
-            adalabUsers.map(adalabUser =>
+            adalabUsersdata.map(adalabUser =>
               <option
                 className="users-finder__option"
                 key={adalabUser.id}
@@ -109,6 +114,32 @@ class App extends React.Component {
             : <option>Loading ...</option>
           }
         </select>
+        {fetchAdalabUserOk === true
+          ?
+          <div className="user-card">
+            <ul className="user-card__list-up">
+              <li className="user-card__item-up">@{adalabUserdata.login}</li>
+              <li className="user-card__item-up">{adalabUserdata.name}</li>
+              <li className="user-card__item-up">{adalabUserdata.location}</li>
+            </ul>
+            <ul className="user-card__list-down">
+              <div className="user-card__items-wrapper">
+                <li className="user-card__item-down">{adalabUserdata.public_repos}</li>
+                <li className="user-card__item-down">Repos</li>
+              </div>
+              <div className="user-card__items-wrapper">
+                <li className="user-card__item-down">{adalabUserdata.followers}</li>
+                <li className="user-card__item-down">Followers</li>
+              </div>
+              <div className="user-card__items-wrapper">
+                <li className="user-card__item-down">{adalabUserdata.following}</li>
+                <li className="user-card__item-down">Following</li>
+              </div>
+            </ul>
+          </div>
+
+          : (<p>logo futuro de gitbub</p>)
+        }
       </div>
     );
   }
