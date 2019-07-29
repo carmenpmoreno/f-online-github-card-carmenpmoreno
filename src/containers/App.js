@@ -3,7 +3,6 @@ import './App.scss';
 import logo from "../images/logo-adalab.png";
 import SelectUser from '../components/SelectUser.js';
 import fetchAdalabUsers from '../services/getAdalabUsers';
-// import mockAdalabUsers from '../services/getAdalabUsers';
 import UserCard from '../components/UserCard';
 
 class App extends React.Component {
@@ -27,6 +26,7 @@ class App extends React.Component {
   handleOptions(event) {
     const adalabUser = event.currentTarget.value;
     const AdalabUserUrl = `https://api.github.com/users/${adalabUser}`;
+
     fetch(AdalabUserUrl)
       .then(response => response.json())
       .then(AdalabUserInfo => {
@@ -35,47 +35,9 @@ class App extends React.Component {
     fetchAdalabUserOk: true
         });
       });
-    // const mockAdalabUser = {
-    //   "login": "AilatanGH",
-    //   "id": 26969648,
-    //   "node_id": "MDQ6VXNlcjI2OTY5NjQ4",
-    //   "avatar_url": "https://avatars2.githubusercontent.com/u/26969648?v=4",
-    //   "gravatar_id": "",
-    //   "url": "https://api.github.com/users/AilatanGH",
-    //   "html_url": "https://github.com/AilatanGH",
-    //   "followers_url": "https://api.github.com/users/AilatanGH/followers",
-    //   "following_url": "https://api.github.com/users/AilatanGH/following{/other_user}",
-    //   "gists_url": "https://api.github.com/users/AilatanGH/gists{/gist_id}",
-    //   "starred_url": "https://api.github.com/users/AilatanGH/starred{/owner}{/repo}",
-    //   "subscriptions_url": "https://api.github.com/users/AilatanGH/subscriptions",
-    //   "organizations_url": "https://api.github.com/users/AilatanGH/orgs",
-    //   "repos_url": "https://api.github.com/users/AilatanGH/repos",
-    //   "events_url": "https://api.github.com/users/AilatanGH/events{/privacy}",
-    //   "received_events_url": "https://api.github.com/users/AilatanGH/received_events",
-    //   "type": "User",
-    //   "site_admin": false,
-    //   "name": "Natalia Guaita",
-    //   "company": null,
-    //   "blog": "",
-    //   "location": "Madrid",
-    //   "email": null,
-    //   "hireable": null,
-    //   "bio": "\r\nCurrent adalaber | Graphic Designer | Front-end Junior",
-    //   "public_repos": 12,
-    //   "public_gists": 0,
-    //   "followers": 10,
-    //   "following": 1,
-    //   "created_at": "2017-04-06T14:26:35Z",
-    //   "updated_at": "2019-05-06T09:00:14Z"
-    // }
-    // this.setState({
-    //   adalabUserdata: mockAdalabUser,
-    //   fetchAdalabUserOk: true
-    // });
   }
 
   getAdalabUsers() {
-
     fetchAdalabUsers()
     .then(adalabUsers => {
       this.setState({
@@ -83,11 +45,6 @@ class App extends React.Component {
         fetchAdalabUsersOk: true,
       });
     });
-
-    // this.setState({
-    //   adalabUsersdata: mockAdalabUsers,
-    //   fetchAdalabUsersOk: true,
-    // });
   }
 
   render() {
