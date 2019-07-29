@@ -1,3 +1,17 @@
 .user-card__list-up, .user-card__list-down {
     list-style: none;
 }
+.user-card {
+    margin: 20px auto;
+    height: 400px;
+    width: 200px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cardImg {
+    height: 200px;
+    width: 200px;
+}

@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.scss';
+import logo from "../images/logo-adalab.png";
+import SelectUser from '../components/SelectUser.js';
 // import fetchAdalabUsers from '../services/getAdalabUsers';
 import mockAdalabUsers from '../services/getAdalabUsers';
 import UserCard from '../components/UserCard';
@@ -92,34 +94,29 @@ class App extends React.Component {
     const { adalabUsersdata, fetchAdalabUsersOk, adalabUserdata, fetchAdalabUserOk } = this.state;
     return (
       <div className="App" >
-        <h1>GitHub finder of people on Adalab</h1>
-        <label htmlFor="users" className="users-finder__label">Selecciona una usuaria</label>
-        <select
-          id="users"
-          className="users-finder__select"
-          name="users"
-          onChange={this.handleOptions}
-        >
-          <option className="users-finder__label-option">Selecciona una usuaria</option>
-          {fetchAdalabUsersOk === true
-            ?
-            adalabUsersdata.map(adalabUser =>
-              <option
-                className="users-finder__option"
-                key={adalabUser.id}
-                value={adalabUser.login}
-              >{adalabUser.login}
-              </option>
-            )
-            : <option>Loading ...</option>
-          }
-        </select>
-        {fetchAdalabUserOk === true
-          ? <UserCard
-            adalabUserdata={adalabUserdata}
+        <header>
+          <h1 className="hidden">GitHub finder of people on Adalab</h1>
+        </header>
+        <main className="main-section">
+          <SelectUser
+            adalabUsersdata={adalabUsersdata}
+            fetchAdalabUsersOk={fetchAdalabUsersOk}
+            handleOptions={this.handleOptions}
           />
-          : (<p>logo futuro de gitbub</p>)
-        }
+          {fetchAdalabUserOk === true
+            ? <UserCard
+              adalabUserdata={adalabUserdata}
+            />
+            : (
+            <div className="main__default-image-wrapper">
+              <i className="fab fa-github" alt="github logo" />
+            </div>
+            )
+          }
+        </main>
+        <footer className="footer-section">
+            <img className="footer-section__logo" src={logo} alt="adalab logo" />
+        </footer>
       </div>
     );
   }

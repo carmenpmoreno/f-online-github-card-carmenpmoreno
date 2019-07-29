@@ -7,7 +7,9 @@ class UserCard extends React.Component {
         const { adalabUserdata } = this.props;
         return (
             <div className="user-card">
-                <img className="cardImg" src={adalabUserdata.avatar_url} alt={adalabUserdata.name}/>
+                <div className="cardImg-wrapper">
+                    <img className="cardImg" src={adalabUserdata.avatar_url} alt={adalabUserdata.name} />
+                </div>
                 <ul className="user-card__list-up">
                     <li className="user-card__item-up">@{adalabUserdata.login}</li>
                     <li className="user-card__item-up">{adalabUserdata.name}</li>
