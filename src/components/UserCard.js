@@ -11,21 +11,21 @@ class UserCard extends React.Component {
                     <img className="cardImg" src={adalabUserdata.avatar_url} alt={adalabUserdata.name} />
                 </div>
                 <ul className="user-card__list-up">
-                    <li className="user-card__item-up">@{adalabUserdata.login}</li>
-                    <li className="user-card__item-up">{adalabUserdata.name}</li>
-                    <li className="user-card__item-up">{adalabUserdata.location}</li>
+                    <li className="user-card__item-up item-login">@{adalabUserdata.login}</li>
+                    <li className="user-card__item-up item-name">{adalabUserdata.name}</li>
+                    <li className="user-card__item-up item-location">{adalabUserdata.location}</li>
                 </ul>
                 <ul className="user-card__list-down">
-                    <div className="user-card__items-wrapper">
-                        <li className="user-card__item-down">{adalabUserdata.public_repos}</li>
+                    <div className="user-card__items-wrapper grid-item1">
+                        <li className="user-card__item-down item-number">{adalabUserdata.public_repos}</li>
                         <li className="user-card__item-down">Repos</li>
                     </div>
                     <div className="user-card__items-wrapper">
-                        <li className="user-card__item-down">{adalabUserdata.followers}</li>
+                        <li className="user-card__item-down item-number">{adalabUserdata.followers}</li>
                         <li className="user-card__item-down">Followers</li>
                     </div>
                     <div className="user-card__items-wrapper">
-                        <li className="user-card__item-down">{adalabUserdata.following}</li>
+                        <li className="user-card__item-down item-number">{adalabUserdata.following}</li>
                         <li className="user-card__item-down">Following</li>
                     </div>
                 </ul>

@@ -1,14 +1,20 @@
 @import '../scss/variables';
 
-.users-finder__label {
-    display: none;
-}
 .users-finder__wrapper {
     padding: 20px;
     text-align: center;
 }
+.users-finder__label {
+    display: none;
+}
 .users-finder__select {
+    font-family: $defaultFontFamily;
+    font-size: $defaultFontSize;
+    color: $greyMouse;
+    width: 200px;
+    height: 40px;
+    padding-left: 10px;
     background-color: #fff;
-    border: $shadowColor;
-    box-shadow: 2px 2px 0.5em $shadowColor;
+    border: $greyMouse;
+    box-shadow: 2px 2px 0.5em $greyMouse;
 }

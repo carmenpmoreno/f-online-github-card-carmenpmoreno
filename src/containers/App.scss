@@ -1,7 +1,10 @@
 @import '../scss/variables';
 .App {
     min-height: 100vh;
-    background-image: linear-gradient(180deg, $backgroundColor1 0%,$backgroundColor2 90%);
+    background-image: linear-gradient(180deg, $snowWhite 0%,$greyMouse 90%);
+    font-family: $defaultFontFamily;
+    font-size: $defaultFontSize;
+    color: $charcoalBlack;
 }
 .hidden {
     display: none;

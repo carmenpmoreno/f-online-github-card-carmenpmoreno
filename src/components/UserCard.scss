@@ -1,17 +1,60 @@
+@import '../scss/variables';
+
 .user-card__list-up, .user-card__list-down {
     list-style: none;
 }
 .user-card {
-    margin: 20px auto;
-    height: 400px;
-    width: 200px;
+    margin: 20px auto auto auto;
+    width: 250px;
     background-color: #fff;
+    box-shadow: 2px 2px 0.5em $greyMouse;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .cardImg {
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: 250px;
+}
+.user-card__list-up,.user-card__list-down {
+    margin: 0;
+    padding: 10px 0;
+    width: 250px;
+}
+.user-card__list-up {
+    background-color: #fff;
+}
+.user-card__item-up {
+    padding-left: 20px;
+    &.item-login {
+        color: $greyMouse;
+    }
+    &.item-name {
+        color: $blueIntense;
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+    &.item-location {
+        font-size: 0.9em;
+    }
+}
+.user-card__list-down {
+    background-image: linear-gradient(180deg, $blueIntense 0%, $bluelight 50%);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.user-card__items-wrapper {
+    padding: 5px;
+}
+.grid-item1 {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.user-card__item-down {
+    color: $snowWhite;
+    &.item-number {
+        font-size: 2em;
+        font-weight: bold;
+    }
 }
