@@ -23,6 +23,16 @@ class App extends React.Component {
     this.getAdalabUsers();
   }
 
+  getAdalabUsers() {
+    fetchAdalabUsers()
+    .then(adalabUsers => {
+      this.setState({
+        adalabUsersdata: adalabUsers,
+        fetchAdalabUsersOk: true,
+      });
+    });
+  }
+
   handleOptions(event) {
     const adalabUser = event.currentTarget.value;
     const AdalabUserUrl = `https://api.github.com/users/${adalabUser}`;
@@ -35,16 +45,6 @@ class App extends React.Component {
     fetchAdalabUserOk: true
         });
       });
-  }
-
-  getAdalabUsers() {
-    fetchAdalabUsers()
-    .then(adalabUsers => {
-      this.setState({
-        adalabUsersdata: adalabUsers,
-        fetchAdalabUsersOk: true,
-      });
-    });
   }
 
   render() {
